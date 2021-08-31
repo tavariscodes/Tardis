@@ -1,25 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import DivOne from './Divone';
+import DivTwo from './Divtwo';
+import DivThree from './Divthree';
+
 function App() {
+  const tardis = {
+    name: 'Time and Relative Dimension in space',
+    caps: false
+  };
+  const [state, setState] = useState(tardis)
+  const changeIt = (): void => {
+    if (state.caps) {
+      setState({
+        name: state.name.toLowerCase(),
+        caps: false,
+      })
+    } else {
+      setState({
+        name: state.name.toUpperCase(),
+        caps: true,
+      })
+    }
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div>
+        <DivOne tardis={state.name} fn={changeIt}/>
+      </div>
+     
   );
 }
 
